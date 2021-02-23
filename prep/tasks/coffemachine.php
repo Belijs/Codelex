@@ -29,6 +29,9 @@ if ($buyerChoice < 0 || $buyerChoice > 2) {
     exit ('Invalid button') . PHP_EOL;
 }
 
+if ($drinks[$buyerChoice]['price'] > walletSum($walletCoins)){
+    exit ('Not enough money in the wallet...');
+}
 
 $allCoinsInserted = [];
 
@@ -41,8 +44,9 @@ while (true) {
 
     $throwCoin = readline('Insert coin: ');
 
-    if (!array_key_exists($throwCoin, $walletCoins)) {
-        $coinInserted = readline('Insert a valid coin: ');
+    while (!array_key_exists($throwCoin, $walletCoins)) {
+        exit('Your coin rolled out - was not valid...');
+
     }
 
     if ($walletCoins[$throwCoin] == 0) {
@@ -52,8 +56,12 @@ while (true) {
     array_push($allCoinsInserted, $throwCoin);
     $walletCoins[$throwCoin]--;
 
+    // return change
+    if ($allCoinsInserted > $drinks[$buyerChoice]['price']){
+        echo 'Your change: ' . abs(($drinks[$buyerChoice]['price'] - array_sum($allCoinsInserted)) / 100). ' €'. PHP_EOL;
+    }
+
     if (array_sum($allCoinsInserted) >= $drinks[$buyerChoice]['price']) {
-        echo 'Sorry, because of a bad programmer, we are not able to hand out your change...' . PHP_EOL;
         exit ('Thanks for the order. Enjoy your drink!');
     }
 }
