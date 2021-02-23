@@ -2,7 +2,7 @@
 $drinks = [
     ['type' => 'latte', 'price' => 300],
     ['type' => 'tea', 'price' => 100],
-    ['type' => 'henesey', 'price' => 3000]
+    ['type' => 'hennessy', 'price' => 3000]
 ];
 
 // wallet coins and SUM
@@ -30,7 +30,7 @@ if ($buyerChoice < 0 || $buyerChoice > 2) {
 }
 
 if ($drinks[$buyerChoice]['price'] > walletSum($walletCoins)){
-    exit ('Not enough money in the wallet...');
+    exit ('Not enough money in the wallet to buy: ' . $drinks[$buyerChoice]['type']);
 }
 
 $allCoinsInserted = [];
@@ -42,7 +42,7 @@ while (true) {
     echo 'Price: ' . $drinks[$buyerChoice]['price'] / 100 . ' €' . PHP_EOL;
     echo 'Amount inserted: ' . array_sum($allCoinsInserted) / 100 . ' €' . PHP_EOL;
 
-    $throwCoin = readline('Insert coin: ');
+    $throwCoin = readline('Insert coin (1€ = 100, 2€ = 200...): ');
 
     while (!array_key_exists($throwCoin, $walletCoins)) {
         exit('Your coin rolled out - was not valid...');
