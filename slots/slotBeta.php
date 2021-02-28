@@ -1,123 +1,99 @@
 <?php
+// Write a method named swap_points that accepts two Points as parameters and swaps their x/y values.
 
-$slotScreen = [];
-
-$myMoney = 100;
-
-$elements = [1, 2, 3, 4];
-
-$startPlaying = readline('Enter money amount (1 spin = 10): ');
-$chooseBet = readline('Set your bet [10, 20, 30]');
-
-function removeMoney($myMoney, $startPlaying)
+function randomElement(): string
 {
-    return $myMoney - $startPlaying;
+$elements = ['A', 'B', 'C', 'D', 'E'];
+$randElement = array_rand($elements);
+return $elements[$randElement];
 }
 
-echo 'Wallet balance: ' . removeMoney($myMoney, $startPlaying) . PHP_EOL;
+$wallet = 200;
+$reward = 0;
 
-while ($chooseBet <= $startPlaying) {
-    $spin = readline('Spin? [y/n]');
-    if ($spin == 'y') {
-        $startPlaying = $startPlaying - $chooseBet;
- //       echo $slotScreen = rand(1, 3) . PHP_EOL;
-    }
-    echo $startPlaying;
-};
-
-$ele = [1, 2, 3]; //test
-
-
-$slotScreen[0][0] = array_rand($ele);
-$slotScreen[0][1] = array_rand($ele);
-$slotScreen[0][2] = array_rand($ele);
-
-$slotScreen[1][0] = rand(1, 3);
-$slotScreen[1][1] = rand(1, 3);
-$slotScreen[1][2] = rand(1, 3);
-
-$slotScreen[2][0] = rand(1, 3);
-$slotScreen[2][1] = rand(1, 3);
-$slotScreen[2][2] = rand(1, 3);
-
-$line1 = $slotScreen[0][0] . $slotScreen[0][1] . $slotScreen[0][2];
-echo $line1;
-
-
-// horizontal combos
-if ($slotScreen[0][0] == $slotScreen[0][1] && $slotScreen[0][1] == $slotScreen[0][2]) {
-    if ($slotScreen[0][0] == 1) {
-        $myMoney = $myMoney + 10;
-    }
-    if ($slotScreen[0][0] == 2) {
-        $myMoney = $myMoney + 20;
-
-        if ($slotScreen[0][0] == 3) {
-            $myMoney = $myMoney + 30;
-        }
-        if ($slotScreen[0][0] == 4) {
-            $myMoney = $myMoney + (5 * 30); // 5 free games
-        }
-    }
+$moneyInMachine = readline('Insert money: ');
+if ($moneyInMachine > $wallet) {
+exit ('Not enough money');
 }
-if ($slotScreen[1][0] == $slotScreen[1][1] && $slotScreen[1][1] == $slotScreen[1][2]) {
-    if ($slotScreen[1][0] == 1) {
-        $myMoney = $myMoney + 10;
-    }
-    if ($slotScreen[1][0] == 2) {
-        $myMoney = $myMoney + 20;
-
-        if ($slotScreen[1][0] == 3) {
-            $myMoney = $myMoney + 30;
-        }
-        if ($slotScreen[0][0] == 4) {
-            $myMoney = $myMoney + (5 * 30);
-        }
-    }
+$setBid = readline('Set bid [10, 20, 30...]');
+if (($setBid % 10 !== 0) || ($setBid > $moneyInMachine)) {
+exit ('Bid error');
 }
-if ($slotScreen[2][0] == $slotScreen[2][1] && $slotScreen[2][1] == $slotScreen[2][2]) {
-    if ($slotScreen[2][0] == 1) {
-        $myMoney = $myMoney + 10;
-    }
-    if ($slotScreen[2][0] == 2) {
-        $myMoney = $myMoney + 20;
 
-        if ($slotScreen[2][0] == 3) {
-            $myMoney = $myMoney + 30;
-        }
-        if ($slotScreen[0][0] == 4) {
-            $myMoney = $myMoney + (5 * 30);
-        }
-    }
-}
-// diognal combos
-if ($slotScreen[0][0] == $slotScreen[1][1] && $slotScreen[1][1] == $slotScreen[2][2]) {
-    if ($slotScreen[0][0] == 1) {
-        $myMoney = $myMoney + 10;
-    }
-    if ($slotScreen[0][0] == 2) {
-        $myMoney = $myMoney + 20;
+do {
 
-        if ($slotScreen[0][0] == 3) {
-            $myMoney = $myMoney + 30;
-        }
-        if ($slotScreen[0][0] == 4) {
-            $myMoney = $myMoney + (5 * 30);
-        }
-    }
-}
-if ($slotScreen[2][0] == $slotScreen[1][1] && $slotScreen[1][1] == $slotScreen[0][2]) {
-    if ($slotScreen[2][0] == 1) {
-        $myMoney = $myMoney + 10;
-    }
-    if ($slotScreen[2][0] == 2) {
-        $myMoney = $myMoney + 20;
+$line1 = [];
+$line2 = [];
+$line3 = [];
+$allLines = [];
 
-        if ($slotScreen[2][0] == 3) {
-            $myMoney = $myMoney + 30;
-        }
-        if ($slotScreen[0][0] == 4) {
-            $myMoney = $myMoney + (5 * 30);
-        }
-    }
+
+for ($i = 0; $i < 3; $i++) {
+array_push($line1, randomElement());
 }
+for ($i = 0; $i < 3; $i++) {
+array_push($line2, randomElement());
+}
+for ($i = 0; $i < 3; $i++) {
+array_push($line3, randomElement());
+}
+
+$allLines = array_merge($allLines, $line1, $line2, $line3);
+
+echo 'Your bid size is: ' . $setBid . PHP_EOL;
+$spinAgain = readline('Spin it! [y/n]');
+
+$moneyInMachine = $moneyInMachine - $setBid;
+
+if ($spinAgain == 'y') {
+$newLine = 0;
+for ($i = 0; $i < 1; $i++) {
+foreach ($allLines as $char) {
+echo $char;
+$newLine++;
+
+if ($newLine == 3) {
+$newLine = 0;
+usleep(600000);
+echo PHP_EOL;
+}
+}
+}
+}
+if ($spinAgain == 'n') {
+$wallet = (int)$wallet - (int)$moneyInMachine + (int)$reward;
+exit ('Bye! ' . 'Wallet balance: ' . $wallet);
+}
+
+echo 'Money in machine:' . $moneyInMachine . PHP_EOL;
+echo 'Winnings: ' . $reward . PHP_EOL;
+
+// winning combos
+if ($allLines[0] == $allLines[1] && $allLines[1] == $allLines[2]) {
+$reward += $setBid * 5;
+echo '***JACKPOT***' . PHP_EOL;
+echo $reward = $reward + $setBid * 5 . PHP_EOL;
+}
+if ($allLines[3] == $allLines[4] && $allLines[4] == $allLines[5]) {
+$reward += $setBid * 5;
+echo '***JACKPOT***' . PHP_EOL;
+echo $reward = $reward + $setBid * 5 . PHP_EOL;
+}
+if ($allLines[6] == $allLines[7] && $allLines[7] == $allLines[8]) {
+$reward += $setBid * 5;
+echo '***JACKPOT***' . PHP_EOL;
+echo $reward = $reward + $setBid * 5 . PHP_EOL;
+}
+// diagonal
+if ($allLines[0] == $allLines[4] && $allLines[4] == $allLines[8]) {
+$reward += $setBid * 5;
+echo '***JACKPOT***' . PHP_EOL;
+echo $reward = $reward + $setBid * 5 . PHP_EOL;
+}
+if ($allLines[6] == $allLines[4] && $allLines[4] == $allLines[2]) {
+$reward += $setBid * 5;
+echo '***JACKPOT***' . PHP_EOL;
+echo $reward = $reward + $setBid * 5 . PHP_EOL;
+}
+
+} while ($moneyInMachine > 0);
