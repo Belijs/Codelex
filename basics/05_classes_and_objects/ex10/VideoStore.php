@@ -9,7 +9,7 @@ class VideoStore
         $this->videos[] = $video;
     }
 
-    public function checkOut(string $insertTitle)
+    public function checkOut(string $insertTitle): void
     {
         foreach ($this->videos as $video) {
             if ($video->title == $insertTitle) {
@@ -18,7 +18,7 @@ class VideoStore
         }
     }
 
-    public function returnVideo(string $insertTitle)
+    public function returnVideo(string $insertTitle): void
     {
         foreach ($this->videos as $video) {
             if ($video->title === $insertTitle) {
@@ -27,7 +27,7 @@ class VideoStore
         }
     }
 
-    public function rateVideo(string $insertTitle, int $insertRating)
+    public function rateVideo(string $insertTitle, int $insertRating): void
     {
         foreach ($this->videos as $video) {
             if ($video->title = $insertTitle) {
@@ -36,10 +36,10 @@ class VideoStore
         }
     }
 
-    public function printInventory()
+    public function listInventory(): void
     {
         foreach ($this->videos as $video) {
-            echo 'Movie title: ' . $video->title . ', Movie rating: ' . $video->calculateRating() . '. ' . $video->checking();
+            echo 'Movie title: ' . $video->title . ', Rating: ' . $video->calculateRating() . '. ' . $video->checking();
         }
     }
 }

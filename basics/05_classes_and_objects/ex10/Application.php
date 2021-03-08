@@ -36,24 +36,24 @@ class Application
         }
     }
 
-    private function addMovies($videostore)
+    private function addMovies($videostore): void
     {
         $videostore->addVideo(new Video(readline('Enter [title] to ADD a movie: ')));
     }
 
-    private function rentVideo($videostore)
+    private function rentVideo($videostore): void
     {
         $videostore->checkOut(readline('Enter [title] to RENT a movie: '));
     }
 
-    private function returnVideo($videostore)
+    private function returnVideo($videostore): void
     {
         $videostore->returnVideo(readline('Enter [title] to RETURN a movie: '));
 
     }
 
-    private function listInventory($videostore)
+    private function listInventory($videostore): void
     {
-        $videostore->printInventory();
+        $videostore->listInventory();
     }
 }

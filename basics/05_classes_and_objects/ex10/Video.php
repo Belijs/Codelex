@@ -11,8 +11,6 @@ class Video
         $this->title = $title;
     }
 
-
-
     public function returning(): void
     {
         $this->check = false;
@@ -30,14 +28,17 @@ class Video
 
     public function checking(): string
     {
-        if ($this->check === true){
-            return 'Available' .PHP_EOL;
+        if ($this->check === false) {
+            return 'Available' . PHP_EOL;
         }
         return 'Out of stock' . PHP_EOL;
     }
 
-    public function calculateRating()
+    public function calculateRating(): float
     {
-        return array_sum($this->rating) / count($this->rating);
+        if (count($this->rating) !== 0) {
+            return array_sum($this->rating) / count($this->rating);
+        }
+        return 0;
     }
 }
