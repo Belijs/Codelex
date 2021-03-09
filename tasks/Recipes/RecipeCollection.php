@@ -4,29 +4,41 @@ class RecipeCollection
 {
     public array $recipes = [];
 
-    public function addRecipe(Recipe $recipe)
+    public function addRecipe(Recipe $recipe): void
     {
         $this->recipes[] = $recipe;
     }
 
-    public function ingredientInRecipe(Ingredient $ingredient): void
+    public function ingredientInRecipe(Ingredient $ingredient): string
     {
+        $seeRecipes = '';
         foreach ($this->recipes as $recipe) {
-
-            $checkRecipes = array_intersect($recipe->ingredients, $ingredient->ingredients);
-            $checkWhatsMissing = array_diff($recipe->ingredients, $ingredient->ingredients);
-
+            $checkRecipes = array_intersect($recipe->ingredients, $ingredient->getIngredients());
             foreach ($checkRecipes as $checkRecipe) {
-                if ($checkRecipes == 0) {
-                    echo 'Cant make anything from this product...';
-                }
-                echo 'This product is in recipe: ' . $recipe->getName() . PHP_EOL;
-
-                foreach ($checkWhatsMissing as $missingIngredient) {
-                    echo 'Missing: ' . $missingIngredient . PHP_EOL;
+                if (!$checkRecipes == 0) {
+                    $seeRecipes .= $recipe->getName() . PHP_EOL;
                 }
             }
-            echo PHP_EOL;
         }
+        return $seeRecipes;
+    }
+
+    public function whatsMissing(Ingredient $ingredient): string
+    {
+        $seeMissing = '';
+        foreach ($this->recipes as $recipe) {
+            $checkWhatsMissing = array_diff($recipe->ingredients, $ingredient->getIngredients());
+            $checkRecipes = array_intersect($recipe->ingredients, $ingredient->getIngredients());
+
+            foreach ($checkRecipes as $checkRecipe) {
+                if (!$checkRecipes ==0 ) {
+                    foreach ($checkWhatsMissing as $missingIngredient) {
+                        $seeMissing .= $missingIngredient . PHP_EOL;
+                    }
+                }
+            }
+
+        }
+        return $seeMissing;
     }
 }

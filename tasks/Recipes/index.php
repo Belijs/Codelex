@@ -12,7 +12,18 @@ $recipes->addRecipe($snack);
 $recipes->addRecipe($main);
 $recipes->addRecipe($dessert);
 
-$myIngredient = new Ingredient();
-$myIngredient->addIngredients();
+$amount = readline('How many ingredients do you have? ');
 
-$recipes->ingredientInRecipe($myIngredient);
+$myIngredient = new Ingredient();
+
+for ($i = 0; $i < $amount; $i++) {
+    $enterIngredient = readline('Enter your product: ');
+    $myIngredient->addIngredients($enterIngredient);
+}
+
+echo 'With this ingredient you can make: ' . PHP_EOL;
+echo $recipes->ingredientInRecipe($myIngredient);
+
+
+echo 'You are missing these ingredients: ' . PHP_EOL;
+echo $recipes->whatsMissing($myIngredient);

@@ -4,12 +4,13 @@ class Ingredient
 {
     public array $ingredients = [];
 
-    public function addIngredients() : void
+    public function addIngredients($enterIngredient): void
     {
-        $amount = readline('How many products do you have: ');
-        for ($i = 0; $i < $amount; $i++) {
-            $myIngredient = readline('I have: ');
-            $this->ingredients[] = $myIngredient;
-        }
+        $this->ingredients[] = $enterIngredient;
+    }
+
+    public function getIngredients(): array
+    {
+        return $this->ingredients;
     }
 }
