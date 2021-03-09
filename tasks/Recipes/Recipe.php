@@ -2,8 +2,8 @@
 
 class Recipe
 {
-   public string $name;
-    public array $ingredients = [];
+    private string $name;
+    private array $ingredients = [];
 
     public function __construct(string $name, array $ingredients)
     {

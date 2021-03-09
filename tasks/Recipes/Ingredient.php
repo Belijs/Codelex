@@ -2,7 +2,7 @@
 
 class Ingredient
 {
-    public array $ingredients = [];
+    private array $ingredients = [];
 
     public function addIngredients($enterIngredient): void
     {

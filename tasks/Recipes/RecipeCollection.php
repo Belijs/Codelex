@@ -2,7 +2,7 @@
 
 class RecipeCollection
 {
-    public array $recipes = [];
+    private array $recipes = [];
 
     public function addRecipe(Recipe $recipe): void
     {
@@ -13,7 +13,8 @@ class RecipeCollection
     {
         $seeRecipes = '';
         foreach ($this->recipes as $recipe) {
-            $checkRecipes = array_intersect($recipe->ingredients, $ingredient->getIngredients());
+            $checkRecipes = array_intersect($recipe->getIngredients(), $ingredient->getIngredients());
+
             foreach ($checkRecipes as $checkRecipe) {
                 if (!$checkRecipes == 0) {
                     $seeRecipes .= $recipe->getName() . PHP_EOL;
@@ -27,8 +28,8 @@ class RecipeCollection
     {
         $seeMissing = '';
         foreach ($this->recipes as $recipe) {
-            $checkWhatsMissing = array_diff($recipe->ingredients, $ingredient->getIngredients());
-            $checkRecipes = array_intersect($recipe->ingredients, $ingredient->getIngredients());
+            $checkWhatsMissing = array_diff($recipe->getIngredients(), $ingredient->getIngredients());
+            $checkRecipes = array_intersect($recipe->getIngredients(), $ingredient->getIngredients());
 
             foreach ($checkRecipes as $checkRecipe) {
                 if (!$checkRecipes ==0 ) {

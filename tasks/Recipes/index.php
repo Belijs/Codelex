@@ -24,6 +24,5 @@ for ($i = 0; $i < $amount; $i++) {
 echo 'With this ingredient you can make: ' . PHP_EOL;
 echo $recipes->ingredientInRecipe($myIngredient);
 
-
 echo 'You are missing these ingredients: ' . PHP_EOL;
 echo $recipes->whatsMissing($myIngredient);
