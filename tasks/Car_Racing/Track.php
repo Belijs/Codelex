@@ -31,19 +31,19 @@ class Track
         return str_repeat('*', $this->length);
     }
 
-    public function positions(int $racer): int
+    public function position(int $racer): int
     {
-        return strpos($this->track[$racer], $this->cars->getCars()[$racer]->getName(),1);
+        return strpos($this->track[$racer], $this->cars->getCars()[$racer]->getName());
     }
 
-    public function finishing($racer): void
+    public function finish($racer): void
     {
         $this->track[$racer] = substr_replace($this->build(), $this->cars->getCars()[$racer]->getName(),-1);
     }
 
     public function drive(int $racer): void
     {
-        $this->track[$racer] = substr_replace($this->build(), $this->cars->getCars()[$racer]->getName(), $this->positions($racer) + $this->cars->getCars()[$racer]->move(),1);
+        $this->track[$racer] = substr_replace($this->build(), $this->cars->getCars()[$racer]->getName(), $this->cars->getCars()[$racer]->move() + $this->position($racer),1);
     }
 
     public function place(string $racer): void
