@@ -1,4 +1,5 @@
 <?php
+namespace App;
 
 class Flower implements Sellable
 {

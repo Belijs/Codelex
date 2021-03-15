@@ -1,5 +1,10 @@
 <?php
-namespace App;
+namespace App\Suppliers;
+
+use App\ProductCollection;
+use App\Product;
+use App\Flower;
+
 
 class SupplierB implements Supplier
 {

@@ -1,5 +1,7 @@
 <?php
-namespace App;
+namespace App\Suppliers;
+
+use App\ProductCollection;
 
 interface Supplier
 {

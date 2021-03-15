@@ -1,5 +1,11 @@
 <?php
-namespace App;
+
+namespace App\Suppliers;
+
+use App\ProductCollection;
+use App\Product;
+use App\Flower;
+
 
 class SupplierA implements Supplier
 {
@@ -11,6 +17,7 @@ class SupplierA implements Supplier
         $this->products->add(new Product(new Flower('tulips'), 60), 1000);
         $this->products->add(new Product(new Flower('roses'), 200), 250);
     }
+
     public function products(): ProductCollection
     {
         return $this->products;
