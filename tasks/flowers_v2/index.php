@@ -14,12 +14,15 @@ use App\Suppliers\SupplierA;
 use App\Suppliers\SupplierB;
 use App\Suppliers\SupplierJ;
 use App\Suppliers\SupplierC;
+use App\Suppliers\SupplierMySQL;
+
 
 $veikals = new Shop();
 $veikals->addSupplier(new SupplierA);
 $veikals->addSupplier(new SupplierB);
 $veikals->addSupplier(new SupplierJ); // json
 $veikals->addSupplier(new SupplierC); // csv
+$veikals->addSupplier(new SupplierMySQL); // SQL
 
 //$enterGender = strtolower(readline('Male of Female? '));
 $enterGender = 'male';
