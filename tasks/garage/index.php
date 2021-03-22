@@ -36,18 +36,18 @@ $sixt = new CarCollection();
     <?php foreach ($sixt->getCars() as $key => $value) { ?>
 
         <tr>
-            <td align="center" ><img src="app/img/<?= $value->img ?>" alt="car" width="135" height="80"></td>
-            <td align="center"><?= strtoupper($value->make) ?></td>
-            <td align="center"><?= $value->model ?></td>
-            <td align="center"><?= $value->fuelConsumption ?></td>
-            <td align="center"><?= $value->price ?></td>
-            <td align="center"><?= $value->availability ?></td>
+            <td align="center" ><img src="app/img/<?= $value->getImg() ?>" alt="car" width="135" height="80"></td>
+            <td align="center"><?= strtoupper($value->getMake()) ?></td>
+            <td align="center"><?= $value->getModel() ?></td>
+            <td align="center"><?= $value->getFuelConsumption() ?></td>
+            <td align="center"><?= $value->getPrice() ?></td>
+            <td align="center"><?= $value->getAvailability() ?></td>
 
 
             <td align="center"><form method="post"> <input type="submit" value="Rent it!"
-                        <?php if ($value->availability == 'no') { ?> disabled <?php } ?>></td>
-
+                        <?php if ($value->getAvailability() == 'no') { ?> disabled <?php } ?>></td>
         </tr>
+
     <?php } ?>
 
 </table>

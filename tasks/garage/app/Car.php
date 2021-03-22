@@ -4,14 +4,14 @@ namespace App;
 
 class Car
 {
-    public string $img;
-    public string $make;
-    public string $model;
-    public int $fuelConsumption;
-    public int $price;
-    public string $availability;
+    private string $img;
+    private string $make;
+    private string $model;
+    private int $fuelConsumption;
+    private int $price;
+    private string $availability;
 
-    public function __construct($img, $make, $model, $fuelConsumption, $price, $availability)
+    public function __construct(string $img, string $make, string $model, int $fuelConsumption, int $price, string $availability)
     {
         $this->img = $img;
         $this->make = $make;
@@ -59,6 +59,14 @@ class Car
     public function getImg(): string
     {
         return $this->img;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAvailability(): string
+    {
+        return $this->availability;
     }
 
 }
