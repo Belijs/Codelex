@@ -1,0 +1,34 @@
+[
+  {
+    "img": "q5.png",
+    "make": "audi",
+    "model": "q5",
+    "fuelConsumption": 8,
+    "price": 70,
+    "availability": "yes"
+  },
+  {
+    "img": "rav4.png",
+    "make": "toyota",
+    "model": "rav4",
+    "fuelConsumption": 6,
+    "price": 50,
+    "availability": "yes"
+  },
+  {
+    "img": "tiguan.png",
+    "make": "vw",
+    "model": "tiguan",
+    "fuelConsumption": 8,
+    "price": 50,
+    "availability": "yes"
+  },
+  {
+    "img": "nx.png",
+    "make": "lexus",
+    "model": "nx",
+    "fuelConsumption": 7,
+    "price": 60,
+    "availability": "no"
+  }
+]
