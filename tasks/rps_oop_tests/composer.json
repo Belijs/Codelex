@@ -1,0 +1,19 @@
+{
+    "name": "rudolph/rps_oop_tests",
+    "description": "rps",
+    "authors": [
+        {
+            "name": "Belijs",
+            "email": "rudolfsbaltais@gmail.com"
+        }
+    ],
+    "require": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Tests\\": "tests/"
+        }
+    }
+}
